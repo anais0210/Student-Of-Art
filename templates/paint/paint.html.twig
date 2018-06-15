@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+{{parent()}}
+{% endblock %}
+
+
+{% block body %}
+	{{ form_start(form) }}
+		{{ form_row(form.image) }}
+	{{ form_end(form) }}
+{% endblock %}
