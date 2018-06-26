@@ -61,6 +61,13 @@ class UserProfil
     private $email;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity="App\Entity\Artist", inversedBy="UserProfil")
+     */
+    private $profil;
+
+    /**
      * @return id 
      */
     public function getId()
@@ -196,6 +203,18 @@ class UserProfil
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getProfil(): ?string
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(string $profil): self
+    {
+        $this->profil = $profil;
 
         return $this;
     }

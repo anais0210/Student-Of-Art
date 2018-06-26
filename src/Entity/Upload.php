@@ -6,13 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * class paint
- * @ORM\Entity(repositoryClass="App\Repository\PaintRepository")
+ * class upload
+ * 
+ * @ORM\Entity(repositoryClass="App\Repository\UploadRepository")
  */
-class Paint
+class Upload
 {
     /**
-     * @var string
+     * @var integer
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -20,7 +21,7 @@ class Paint
     private $id;
 
     /**
-     * @var 
+     * @var text
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -34,8 +35,10 @@ class Paint
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Artist", inversedBy="upload")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $artiste;
+    private $artist;
 
     /**
      * @var string
@@ -50,6 +53,12 @@ class Paint
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    public function __construct()
+    {
+        $this->date = new \Datetime();
+    }
+
     /**
      * Get id.
      *
@@ -151,6 +160,18 @@ class Paint
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getArtist(): ?string
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(string $artist): self
+    {
+        $this->artist = $artist;
 
         return $this;
     }

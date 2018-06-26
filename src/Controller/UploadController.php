@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Paint;
-use App\Form\PaintType;
+use App\Entity\Upload;
+use App\Form\UploadType;
 use FOS\UserBundle\Form\Factory\createForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller ;
 use Symfony\Component\Form\Extension\HttpFoundation\handleRequest;
@@ -12,34 +12,34 @@ use Symfony\Component\HttpFoundation\Request ;
 use Symfony\Component\Routing\Annotation\Route ;
 
 /**
- * class Paint 
+ * class Upload 
  */
-class PaintController extends Controller
+class UploadController extends Controller
 {
     /**
-     * @Route("/paint", name="new_paint")
+     * @Route("/upload", name="new_upload")
      * @param Request $request
      * @return render
      */
     public function new(Request $request)
     {
-        $paint = new Paint();
-        $form = $this->createForm(PaintType::class, $paint);
-        $form -> handleRequest($request);
+        $upload = new Upload();
+        $form = $this->createForm(UploadType::class, $upload);
+        $form->handleRequest($request);
 
-        if ($form -> isSubmitted() && $form -> isValid()) {
-            $file = $paint -> getPaint();
-            $fileName = $this -> generateUniqueFileName() . '.' . $file -> guessExtension();
-            $file -> move(
-                $this -> getParameter('paint_directory'),
+        if ($form->isSubmitted() && $form -> isValid()) {
+            $file = $upload->getUpload();
+            $fileName = $this->generateUniqueFileName() . '.' . $file -> guessExtension();
+            $file->move(
+                $this -> getParameter('upload_directory'),
                 $fileName
             );
             $image -> setImage($fileName);
 
-            return $this -> redirect($this -> generateUrl('app_paint_list'));
+            return $this -> redirect($this -> generateUrl('app_upload_list'));
         }
 
-        return $this -> render('paint/paint.html.twig', array(
+        return $this -> render('upload/upload.html.twig', array(
             'form' => $form -> createView(),
         ));
     }

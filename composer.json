@@ -1,4 +1,5 @@
 {
+    "name": "paint",
     "type": "project",
     "license": "proprietary",
     "require": {

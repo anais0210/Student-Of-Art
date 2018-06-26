@@ -12,10 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Class PaintType
  */
-class PaintType extends AbstractType
+class UploadType extends AbstractType
 {
     /**
-     * PaintType builForm
+     * UploadType builForm
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -34,7 +34,7 @@ class PaintType extends AbstractType
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Nom de l\'artiste'],
                 'label_attr' => ['class' => ''],
             ])
-            ->add('image', FileType::class, array( 'label' => 'Image(jpg)'))
+            ->add('image', FileType::class, ['label' => 'Image(jpg)'])
             ->add('envoyer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])
@@ -47,7 +47,7 @@ class PaintType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'App\Entity\Paint',
+            'data_class' => 'App\Entity\Upload',
             'attr' => ['novalidate' => true],
         ));
     }
