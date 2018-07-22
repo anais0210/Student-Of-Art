@@ -23,18 +23,22 @@ class UploadType extends AbstractType
     {
         $builder
             ->add('title', null, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Titre'],
+                'attr' => ['class' => 'form-control',
+                 'placeholder' => 'Titre'],
                 'label_attr' => ['class' => ''],
             ])
             ->add('description', TextareaType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Description'],
+                'attr' => ['class' => 'form-control',
+                'placeholder' => 'Description'],
                 'label_attr' => ['class' => ''],
             ])
             ->add('artiste', null, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Nom de l\'artiste'],
+                'attr' => ['class' => 'form-control', 
+                'placeholder' => 'Nom de l\'artiste'],
                 'label_attr' => ['class' => ''],
             ])
-            ->add('image', FileType::class, ['label' => 'Image(jpg)'])
+            ->add('image', FileType::class, 
+                ['label' => 'Image(jpg)'])
             ->add('envoyer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])

@@ -34,8 +34,7 @@ class Upload
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Artist", inversedBy="upload")
+     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="uploads")
      * @ORM\JoinColumn(nullable=false)
      */
     private $artist;
@@ -54,6 +53,9 @@ class Upload
      */
     private $date;
 
+    /**
+     * @return Datetime 
+     */
     public function __construct()
     {
         $this->date = new \Datetime();
@@ -119,7 +121,7 @@ class Upload
      * @param string $artiste
      * @return self 
      */
-    public function setArtiste(string $artiste): self
+    public function setArtiste($artiste): self
     {
         $this->artiste = $artiste;
 
@@ -138,7 +140,7 @@ class Upload
      * @param string $image
      * @return string 
      */
-    public function setImage(string $image): self
+    public function setImage($image): self
     {
         $this->image = $image;
 
@@ -160,18 +162,6 @@ class Upload
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getArtist(): ?string
-    {
-        return $this->artist;
-    }
-
-    public function setArtist(string $artist): self
-    {
-        $this->artist = $artist;
 
         return $this;
     }

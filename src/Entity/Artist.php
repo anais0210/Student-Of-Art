@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert ;
 class Artist extends BaseUser
 {
     /**
+     * @var id
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -20,42 +21,58 @@ class Artist extends BaseUser
     protected $id;
 
     /**
+     * @var name
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var lastName
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @ORM\OneToMany(targetEntity="App\Entity\Artist", mappedBy="upload")
+     * @var upload
+     * 
+     * @ORM\OneToMany(targetEntity="Upload", mappedBy="artist")
      */
-    private $upload;
+    private $uploads;
 
     /**
-     * @ORM\Column(type="string",length=255)
-     * @ORM\OneToOne(targetEntity="App\Entity\Artist", mappedBy="UserProfil") 
+     * @var profil
+     * @ORM\OneToOne(targetEntity="UserProfil", cascade={"persist"}) 
      */
     private $profil;
 
     /**
-     * @ORM\Column(type="text")
+     * @var description
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
+    /**
+     * @return id 
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Get Name. 
+     * @return string
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Set Name.
+     * @return $self
+     * @param string $name
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -63,11 +80,20 @@ class Artist extends BaseUser
         return $this;
     }
 
+    /**
+     * Get LastName.
+     * @return string
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
+    /**
+     * Set LastName
+     * @param string $lastName
+     * @return self 
+     */
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
@@ -75,23 +101,41 @@ class Artist extends BaseUser
         return $this;
     }
 
-    public function getUpload(): ?string
+    /**
+     * Get Uploads.
+     * @return string 
+     */
+    public function getUploads(): ?string
     {
         return $this->upload;
     }
 
-    public function setUpload(string $upload): self
+    /**
+     * Set Upload.
+     * @param string $upload
+     * @return self
+     */
+    public function setUploads(string $upload): self
     {
         $this->upload = $upload;
 
         return $this;
     }
 
+    /**
+     * Get Description
+     * @return string  
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     *  Set Description.
+     * @param string $description
+     * @return self
+     */
     public function setDescription(string $description): self
     {
         $this->description = $description;
@@ -99,12 +143,21 @@ class Artist extends BaseUser
         return $this;
     }
 
-    public function getProfil(): ?string
+    /**
+     * Get Profil.
+     * @return UserProfil  
+     */
+    public function getProfil(): ?UserProfil
     {
         return $this->profil;
     }
 
-    public function setProfil(string $profil): self
+    /**
+     * Set profil 
+     * @param UserProfil $profil
+     * @return self
+     */
+    public function setProfil(UserProfil $profil = null): self
     {
         $this->profil = $profil;
 

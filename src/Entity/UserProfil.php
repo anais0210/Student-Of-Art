@@ -3,9 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepProfilository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserProfilRepository")
  * class UserProfil
  */
 class UserProfil
@@ -19,55 +20,42 @@ class UserProfil
     private $id;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastname;
-
-    /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $age;
 
     /**
      * @var text
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $biography;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photoProfil;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $country;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     * @ORM\OneToOne(targetEntity="App\Entity\Artist", inversedBy="UserProfil")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $profil;
 
+    public function __toString()
+    {
+        return '';
+    }
+
     /**
+     * Get Id.
      * @return id 
      */
     public function getId()
@@ -76,43 +64,7 @@ class UserProfil
     }
 
     /**
-     * @return name 
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return name
-     */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return lastname 
-     */
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-    /**
-     * @param string $lastname
-     * @return lastname
-     */
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
+     * Get Age.
      * @return age 
      */
     public function getAge(): ?int
@@ -121,6 +73,7 @@ class UserProfil
     }
 
     /**
+     * Set Age.
      * @param int $age
      * @return age
      */
@@ -132,6 +85,7 @@ class UserProfil
     }
 
     /**
+     * Get Biography.
      * @return biography 
      */
     public function getBiography(): ?string
@@ -140,6 +94,7 @@ class UserProfil
     }
 
     /**
+     * Set Biography.
      * @param string $biography
      * @return biography
      */
@@ -151,6 +106,7 @@ class UserProfil
     }
 
     /**
+     * Get PhotoProfil.
      * @return photoProfil 
      */
     public function getPhotoProfil(): ?string
@@ -159,6 +115,7 @@ class UserProfil
     }
 
     /**
+     * Set PhotoProfil
      * @param string $photoProfil
      * @return photoProfil 
      */
@@ -170,6 +127,7 @@ class UserProfil
     }
 
     /**
+     * Get Country.
      * @return country 
      */
     public function getCountry(): ?string
@@ -178,6 +136,7 @@ class UserProfil
     }
 
     /**
+     * Set Country.
      * @param string $country
      * @return country 
      */
@@ -189,29 +148,19 @@ class UserProfil
     }
 
     /**
-     * @return email 
+     * Get Profil.
+     * @return profil 
      */
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     * @return email 
-     */
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
     public function getProfil(): ?string
     {
         return $this->profil;
     }
 
+    /**
+     * Set Profil.
+     * @param string $profil
+     * @return self
+     */
     public function setProfil(string $profil): self
     {
         $this->profil = $profil;

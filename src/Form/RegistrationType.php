@@ -8,43 +8,62 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * class RegistrationType 
+ */
 class RegistrationType extends AbstractType
 {
-	public function buildForm ( FormBuilderInterface $builder , array $options )
-	{
-		 $builder
-            ->add('name', null, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Nom'],
-                'label_attr' => ['class' => ''],
+    /**
+     * RegistrationType builForm
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
+    public function buildForm ( FormBuilderInterface $builder , array $options )
+    {
+        $builder
+                ->add('name', null, [
+                    'attr' => ['class' => 'form-control'], 
+                    'label_attr' => ['class' => ''],
+                    'label' => 'Nom',
             ])
-             ->add('LastName', null, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Prenom'],
-                'label_attr' => ['class' => ''],
-            ])
-            ->add('upload', null, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Upload'],
-                'label_attr' => ['class' => ''],
-            ])
-            ->add('description', TextareaType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Description'],
-                'label_attr' => ['class' => ''],
+                ->add('LastName', null, [
+                    'attr' => ['class' => 'form-control'], 
+                    'label_attr' => ['class' => ''], 
+                    'label' => 'Prenom',
             ])
         ;
     }
 
-	public function getParent()
+    /**
+     * @return FOS\UserBundle\Form\Type\RegistrationFormType
+     */
+    public function getParent()
     {
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 
-      public function getBlockPrefix ()
+    /**
+     * @return app_user_registration
+     */
+    public function getBlockPrefix()
     {
-        return 'app_user_registration' ;
+        return 'app_user_registration';
     }
-    
-    public function getName ()
+
+    /**
+     * @return getBlockPrefix 
+     */
+    public function getName()
     {
-        return $this -> getBlockPrefix ();
+        return $this -> getBlockPrefix();
+    }
+
+     /**
+     * @return getBlockPrefix 
+     */
+    public function getPrenom()
+    {
+        return $this -> getBlockPrefix();
     }
 }
 

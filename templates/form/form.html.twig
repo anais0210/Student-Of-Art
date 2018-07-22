@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	  <title>{% block title %}Inscription{% endblock %}</title>
+         {% block stylesheets %}{% endblock %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{{asset('build/form/images/icons/favicon.ico')}}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('build/form/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('build/form/animate/animate.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('build/form/css-hamburgers/hamburgers.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('build/form/animsition/css/animsition.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('build/form/select2/select2.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('build/form/daterangepicker/daterangepicker.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('build/formcss/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('build/form/css/main.css')}}">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<span class="contact100-form-title">
+			 Inscription
+			</span>
+			{% block body %}  {% endblock %}
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+	{% block javascripts %}{% endblock %}
+
+<!--===============================================================================================-->
+	<script src="{{asset('build/form/jquery/jquery-3.2.1.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{asset('build/form/animsition/js/animsition.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{asset('build/form/bootstrap/js/popper.js')}}"></script>
+	<script src="{{asset('build/form/bootstrap/js/bootstrap.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{asset('build/form/select2/select2.min.js')}}"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{{asset('build/form/daterangepicker/moment.min.js')}}"></script>
+	<script src="{{asset('build/form/daterangepicker/daterangepicker.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{asset('build/form/countdowntime/countdowntime.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{asset('build/form/js/main.js')}}"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+</body>
+</html>
