@@ -1,6 +1,3 @@
-parameters:
-    mailer_user: "a.sparesotto@icloud.com"
-
 framework :
     default_locale : 'fr'
     translator :

@@ -32,17 +32,9 @@ class UploadType extends AbstractType
                 'placeholder' => 'Description'],
                 'label_attr' => ['class' => ''],
             ])
-            ->add('artiste', null, [
-                'attr' => ['class' => 'form-control', 
-                'placeholder' => 'Nom de l\'artiste'],
-                'label_attr' => ['class' => ''],
-            ])
             ->add('image', FileType::class, 
                 ['label' => 'Image(jpg)'])
-            ->add('envoyer', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-primary'],
-            ])
-        ;
+            ;
     }
 
     /**

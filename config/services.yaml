@@ -1,8 +1,8 @@
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'fr'
-    paint_directory : '%kernel.project_dir%/public/uploads/paint'
+    mailer_user: "a.sparesotto@icloud.com"
+    logo_directory: "%kernel.root_dir%/../public/uploads/logo/"
+    gallery_directory: "%kernel.root_dir%/../public/uploads/gallery/"
 
 services:
     # default configuration for services in *this* file
@@ -12,9 +12,7 @@ services:
         public: false       # Allows optimizing the container by removing unused services; this also means
                             # fetching services directly from the container via $container->get() won't work.
                             # The best practice is to be explicit about your dependencies anyway.
-    App\Services\ImageUpload :
-        arguments :
-            $targetDir : '%paint_directory%'
+    
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -27,8 +25,9 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Services\ImageUpload:
+        arguments:
+            $targetDir: '%gallery_directory%'
 
     app.form.registration:
         class: App\Form\RegistrationType
@@ -39,3 +38,8 @@ services:
         tags :
             - { name : kernel.event_subscriber }
 
+    App\EventListener\EditProfileListener:
+        arguments:
+            $logoDirectory: '%logo_directory%'
+        tags:
+            - { name : kernel.event_subscriber }

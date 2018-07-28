@@ -21,15 +21,15 @@ class RegistrationType extends AbstractType
     public function buildForm ( FormBuilderInterface $builder , array $options )
     {
         $builder
-                ->add('name', null, [
-                    'attr' => ['class' => 'form-control'], 
-                    'label_attr' => ['class' => ''],
-                    'label' => 'Nom',
+            ->add('name', null, [
+                'attr' => ['class' => 'form-control'], 
+                'label_attr' => ['class' => ''],
+                'label' => 'Nom',
             ])
-                ->add('LastName', null, [
-                    'attr' => ['class' => 'form-control'], 
-                    'label_attr' => ['class' => ''], 
-                    'label' => 'Prenom',
+            ->add('LastName', null, [
+                'attr' => ['class' => 'form-control'], 
+                'label_attr' => ['class' => ''], 
+                'label' => 'Prenom',
             ])
         ;
     }
@@ -48,22 +48,6 @@ class RegistrationType extends AbstractType
     public function getBlockPrefix()
     {
         return 'app_user_registration';
-    }
-
-    /**
-     * @return getBlockPrefix 
-     */
-    public function getName()
-    {
-        return $this -> getBlockPrefix();
-    }
-
-     /**
-     * @return getBlockPrefix 
-     */
-    public function getPrenom()
-    {
-        return $this -> getBlockPrefix();
     }
 }
 

@@ -5,27 +5,14 @@
         <title>{% block title %}Student Of Art!{% endblock %}</title>
          {% block stylesheets %}{% endblock %}
 
-	<link rel="stylesheet" type="text/css" href="{{asset('build/bootstrap/css/bootstrap.css')}}">
+	  <link rel="stylesheet" type="text/css" href="{{asset('build/bootstrapCss.css')}}">
     <!-- Custom Fonts -->
-    <link href="build/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{{asset('build/font-awesome/css/font-awesome.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('build/css/stylish-portfolio.css')}}">
-     <link href="build/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="{{asset('build/fontAwesomeCss.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('build/themeGeneralCss.css')}}">
+    <link rel="stylesheet" type="text/css"  href="{{asset('build/simpleLineIconsCss.css')}}">
 
     </head>
-    <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
-
     <body id="page-top">
 	    <!-- Navigation -->
 	    <a class="menu-toggle rounded" href="#">
@@ -60,6 +47,16 @@
 	      </ul>
 	    </nav>
 	    <!-- Header -->
+      <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
     <header class="masthead d-flex">
       <div class="container text-center my-auto">
         <h1 class="mb-1">Student Of Art</h1>
@@ -230,18 +227,16 @@
 
         {% block body %}  {% endblock %}
 		{% block javascripts %}{% endblock %}
-        <script src="{{asset('build/js/stylish-potfolio.min.js')}}"></script>
+        <script src="{{asset('build/themeGeneralJs.js')}}"></script>
+        <script src="{{asset('build/bootstrapBundle.js')}}"></script>
+
 	    <!-- Scroll to Top Button-->
 	    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
 	      <i class="fa fa-angle-up"></i>
 	    </a>
 	    <!-- Bootstrap core JavaScript -->
-	    <script src="{{asset('/build/jquery/jquery.min.js')}}"></script>
-	    <script src="{{asset('build/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-	    <!-- Plugin JavaScript -->
-	    <script src="{{asset('build/jquery-easing/jquery.easing.min.js')}}"></script>
-	    <!-- Custom scripts for this template -->
-	    <script src="{{asset('build/js/stylish-portfolio.min.js')}}"></script>
+	    <script src="{{asset('build/bootstrapJQuery.js')}}"></script>
+	    <script src="{{asset('build/bootstrapJQueryEasingCompatibilityJs.js')}}"></script>
 		 
     </body>
 </html>

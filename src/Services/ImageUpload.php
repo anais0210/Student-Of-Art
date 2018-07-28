@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Services;
 
-use App\Services\ImageUpload;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -14,20 +14,25 @@ class ImageUpload
     /**
      * @param targetDir $targetDir 
      */
-    public function __construct($targetDir)
+    public function __construct(string $targetDir)
     {
         $this->targetDir = $targetDir;
     }
 
     /**
      * @param UploadedFile $file
+     * @param string       $targetDir 
+     * 
      * @return $fileName
      */
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file, string $targetDir = null)
     {
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-        $file->move($this->getTargetDir(), $fileName);
+        $file->move(
+            $targetDir ? $targetDir : $this->getTargetDir(), 
+            $fileName
+        );
 
         return $fileName;
     }

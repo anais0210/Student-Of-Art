@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use Symfony\Component\Validator\Constraints as Assert ;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -34,10 +34,15 @@ class Artist extends BaseUser
 
     /**
      * @var upload
-     * 
      * @ORM\OneToMany(targetEntity="Upload", mappedBy="artist")
      */
     private $uploads;
+
+    /**
+     * @var upload
+     * @ORM\OneToOne(targetEntity="Upload")
+     */
+    private $logo;
 
     /**
      * @var profil
@@ -160,6 +165,26 @@ class Artist extends BaseUser
     public function setProfil(UserProfil $profil = null): self
     {
         $this->profil = $profil;
+
+        return $this;
+    }
+
+    /**
+     * @return Upload
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param Upload $logo
+     * 
+     * @return Artist
+     */
+    public function setLogo(Upload $logo = null)
+    {
+        $this->logo = $logo;
 
         return $this;
     }
