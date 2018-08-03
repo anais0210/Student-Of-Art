@@ -1,0 +1,40 @@
+<a class="menu-toggle rounded" href="#">
+  <i class="fa fa-bars"></i>
+</a>
+<nav id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      <a class="js-scroll-trigger" href="#page-top">Student Of Art</a>
+    </li>
+     <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="#page-top">Artiste</a>
+    </li>
+    <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="#page-top">Peinture</a>
+    </li>
+    <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="#sculpteur">Sculpture</a>
+    </li>
+    <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="#services">Dessin</a>
+    </li>
+    <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="#portfolio">Graphisme</a>
+    </li>
+    <li class="sidebar-nav-item">
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+          <a class="js-scroll-trigger" href="{{ path('fos_user_security_logout') }}">
+              {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+          </a>
+      {% else %}
+          <a class="js-scroll-trigger" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+      {% endif %}
+    </li>
+  {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="{{ path('fos_user_registration_register') }}">Inscription</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>

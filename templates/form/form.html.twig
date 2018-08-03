@@ -1,9 +1,38 @@
-{% extends "base.html.twig" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Student Of Art / Connexion{% endblock %}</title>
+         {% block stylesheets %}{% endblock %}
 
-{% block title %}
-{{parent()}}
-{% endblock %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{asset('build/bootstrapCSs.css')}}">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
 
-{% block body %}
-{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{{asset('build/formAnimate.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('build/formHam.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('build/formAnimat.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('build/formSelect2.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('build/formDater.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('build/formUtil.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('build/formMain.css')}}">
+</head>
+<body>
+
+	{% block body %}
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+	{% endblock %}
+
+	<script src="{{asset('build/formJQuery.js')}}"></script>
+	<script src="{{asset('build/formAnim.js')}}"></script>
+	<script src="{{asset('build/bootstrapJs.js')}}"></script>
+	<script src="{{asset('build/formSelect.js')}}"></script>
+	<script src="{{asset('build/formDate.js')}}"></script>
+	<script src="{{asset('build/formCount.js')}}"></script>
+	<script src="{{asset('build/formJs.js')}}"></script>
+	<script src="{{asset('build/popper.js')}}"></script>
+</body>
+</html>
+
+

@@ -43,3 +43,7 @@ services:
             $logoDirectory: '%logo_directory%'
         tags:
             - { name : kernel.event_subscriber }
+    app.form.edit.profile:
+        class: App\Form\EditProfileType
+        tags:
+            - { name: form.type, alias: fos_user_profile }

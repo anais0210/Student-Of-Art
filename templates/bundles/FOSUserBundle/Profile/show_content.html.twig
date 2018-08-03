@@ -5,5 +5,7 @@
 	<p>Prenom: {{ user.lastName }}</p>
     <p>Nom d'utilisateur: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
-
 </div>
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') and user.id == app.user.id %}
+{% endif %}
