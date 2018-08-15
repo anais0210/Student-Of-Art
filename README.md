@@ -9,6 +9,8 @@
 	composer install
 	php bin/console do:da:cr
 	php bin/console do:sc:up --force
+	yarn install
+	yarn run encore dev --watch
 	```
 
 2. Qualité
