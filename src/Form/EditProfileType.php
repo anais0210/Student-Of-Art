@@ -2,9 +2,12 @@
 
 namespace App\Form;
 
+use App\Form\UploadType;
 use FOS\UserBundle\Form\Type\getBlockPrefix;
 use FOS\UserBundle\Form\Type\getParent;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -14,7 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 class EditProfileType extends AbstractType
 {
     /**
-     * EditProfileType builForm
+     * EditProfileType buildForm
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -22,22 +25,49 @@ class EditProfileType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'attr' => ['class' => 'form-control'], 
+                'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => ''],
                 'label' => 'Nom',
             ])
             ->add('lastName', null, [
-                'attr' => ['class' => 'form-control'], 
-                'label_attr' => ['class' => ''], 
-                'label' => 'Prenom',
+                'attr' => ['class' => 'form-control'],
+                'label_attr' => ['class' => ''],
+                'label' => 'Prénom',
             ])
-            ->add('logo', null, [
+            ->add('logo', UploadType::class, [
                 'attr' => ['class' => ''],
                 'label' => 'photo de profil',
+                'required' => false
             ])
-            ->add('description', null, [
+            ->add('categories', ChoiceType::class, [
+                'choices'  =>[
+                    'dessinateur' => 'drawing',
+                    'peintre'     => 'paint',
+                    'sculpteur'    => 'sculptor',
+                    'grapheur'    => 'graphics',
+                ],
+                'label' => 'vous êtes un',
+                'multiple' => true,
+                'expanded' => true
+            ])
+            ->add('biography', null, [
                 'attr' => ['class' => 'form-control'],
-                'label' => 'Biographie'])
+            'label' => 'Biographie'])
+            ->add('BirthdayDate', BirthdayType::class, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'age',
+                'required' => false
+            ])
+            ->add('country', null, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'pays',
+                'required' => false
+            ])
+            ->add('city', null, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'ville',
+                'required' => false
+            ])
         ;
     }
 

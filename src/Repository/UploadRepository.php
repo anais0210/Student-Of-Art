@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Upload;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\createQueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -20,5 +21,18 @@ class UploadRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Upload::class);
+    }
+
+    public function findByCategory(string $category)
+    {
+
+	    $queryBuilder = $this->createQueryBuilder('u');
+	    
+	    $queryBuilder
+	    	->where('u.category = :category')
+	    	->setParameter('categorie', $category)
+	    ;
+
+	    return $queryBuilder->getQuery()->getResult();
     }
 }

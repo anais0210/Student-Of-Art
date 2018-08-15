@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -35,14 +36,12 @@ class Upload
     /**
      * @var string
      * @ORM\ManyToOne(targetEntity="Artist", inversedBy="uploads")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $artist;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Ajouter une image jpg")
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $image;
@@ -52,6 +51,18 @@ class Upload
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text") 
+     */
+    private $fileName;
+
+     /**
+     * @var $category
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $category;
 
     /**
      * @return Datetime 
@@ -129,18 +140,19 @@ class Upload
     }
     /**
      * Get image
-     * @return string 
+     * @return Upload 
      */
-    public function getImage(): ?string
+    public function getImage(): ?UploadedFile
     {
         return $this->image;
     }
     /**
      * Set image
-     * @param string $image
-     * @return string 
+     * @param Upload $upload
+     * 
+     * @return self 
      */
-    public function setImage($image): self
+    public function setImage(UploadedFile $image): self
     {
         $this->image = $image;
 
@@ -165,4 +177,55 @@ class Upload
 
         return $this;
     }
+
+     /**
+     * Get fileName
+     * @return string 
+     */
+    public function getFileName(): ?string
+    {
+        return $this->fileName;
+    }
+    /**
+     * Set fileName
+     * @param string $FileName
+     * @return self 
+     */
+    public function setFileName($fileName): self
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     */
+    public function getCategory()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set category
+     */
+    public function setCategory(string $category)
+    {
+        $this->category = $categories;
+
+        return $this;
+    }
+
+    public function getArtist(): ?Artist
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(?Artist $artist): self
+    {
+        $this->artist = $artist;
+
+        return $this;
+    }
+
 }

@@ -30,7 +30,7 @@ class ImageUpload
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
         $file->move(
-            $targetDir ? $targetDir : $this->getTargetDir(), 
+            $targetDir ? $targetDir : $this->getTargetDir(),
             $fileName
         );
 

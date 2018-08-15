@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Artist;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\getEntityManager;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**

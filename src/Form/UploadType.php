@@ -24,7 +24,7 @@ class UploadType extends AbstractType
         $builder
             ->add('title', null, [
                 'attr' => ['class' => 'form-control',
-                 'placeholder' => 'Titre'],
+                'placeholder' => 'Titre'],
                 'label_attr' => ['class' => ''],
             ])
             ->add('description', TextareaType::class, [
@@ -32,8 +32,8 @@ class UploadType extends AbstractType
                 'placeholder' => 'Description'],
                 'label_attr' => ['class' => ''],
             ])
-            ->add('image', FileType::class, 
-                ['label' => 'Image(jpg)'])
+            ->add('image', FileType::class,
+            ['label' => 'Image(jpg)'])
             ;
     }
 

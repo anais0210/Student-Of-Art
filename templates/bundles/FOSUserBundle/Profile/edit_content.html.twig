@@ -1,16 +1,64 @@
 {% trans_default_domain 'FOSUserBundle' %}
 	{{form_start(form)}}
         <div class="row">
-            <div class="col-md-3 px-1">
+            <div class="col-md-2 pr-4">
                 <div class="form-group">
                     <label>{{form_label(form.username)}}</label>
                     {{form_widget(form.username, {'attr': {'class': 'form-control'}})}}
                 </div>
             </div>
-            <div class="col-md-3 px-1">
+            <div class="col-md-3 pl-1">
                 <div class="form-group">
                     <label>{{form_label(form.email)}}</label>
                     {{form_widget(form.email, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+            <div class="clo-md-3 pl-1">
+                <div class="form-group">
+                    <label>{{form_label(form.name)}}</label>
+                    {{form_widget(form.name, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+            <div class="clo-md-3 pl-3">
+                <div class="form-group">
+                    <label>{{form_label(form.lastName)}}</label>
+                    {{form_widget(form.lastName, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+            <div class="clo-md-5 pl-3">
+                <div class="form-group">
+                    <label>{{form_label(form.biography)}}</label>
+                    {{form_widget(form.biography, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+            <div class="clo-md-2 px-2">
+                <div class="form-group">
+                    <label>{{form_label(form.birthdayDate)}}</label>
+                    {{form_widget(form.birthdayDate, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+            <div class="clo-md-3 px-1">
+                <div class="form-group">
+                    <label>{{form_label(form.country)}}</label>
+                    {{form_widget(form.country, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+            <div class="clo-md-5 pl-3">
+                <div class="form-group">
+                    <label>{{form_label(form.city)}}</label>
+                    {{form_widget(form.city, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+            <div class="clo-md-3 pr-3">
+                <div class="form-group">
+                    <label>{{form_label(form.logo)}}</label>
+                    {{form_widget(form.logo, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+            <div class="clo-md-3 px-1">
+                <div class="form-group">
+                    <label>{{form_label(form.categories)}}</label>
+                    {{form_widget(form.categories, {'attr': {'class': 'form-control'}})}}
                 </div>
             </div>
             <div class="col-md-3 px-1">
@@ -19,24 +67,7 @@
                     {{form_widget(form.current_password, {'attr': {'class': 'form-control'}})}}
                 </div>
             </div>
-            <div class="clo-md-3 px-1">
-                <div class="form-group">
-                    <label>{{form_label(form.name)}}</label>
-                    {{form_widget(form.name, {'attr': {'class': 'form-control'}})}}
-                </div>
-            </div>
-            <div class="clo-md-3 px-1">
-                <div class="form-group">
-                    <label>{{form_label(form.lastName)}}</label>
-                    {{form_widget(form.lastName, {'attr': {'class': 'form-control'}})}}
-                </div>
-            </div>
-            <div class="clo-md-3 px-1">
-                <div class="form-group">
-                    <label>{{form_label(form.description)}}</label>
-                    {{form_widget(form.description, {'attr': {'class': 'form-control'}})}}
-                </div>
-            </div>
+
         </div>
 
 

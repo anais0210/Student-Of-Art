@@ -2,16 +2,23 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
  */
 class Artist extends BaseUser
 {
+    const CATEGORY_DRAWING = 'Dessinateur';
+    const CATEGORY_PAINT = 'Peintre';
+    const CATEGORY_SCULPTOR = 'Sculpteur';
+    const CATEGORY_GRAPHICS = 'Grapheur';
+
     /**
      * @var id
      * @ORM\Id()
@@ -32,6 +39,24 @@ class Artist extends BaseUser
      */
     private $lastName;
 
+     /**
+     * @var DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $birthdayDate;
+
+     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255,nullable=true) 
+     */
+    private $city;
+
     /**
      * @var upload
      * @ORM\OneToMany(targetEntity="Upload", mappedBy="artist")
@@ -45,16 +70,40 @@ class Artist extends BaseUser
     private $logo;
 
     /**
-     * @var profil
-     * @ORM\OneToOne(targetEntity="UserProfil", cascade={"persist"}) 
-     */
-    private $profil;
-
-    /**
-     * @var description
+     * @var biography
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private $biography;
+
+    /**
+     * @var $categories
+     * @ORM\Column(type="array")
+     */
+    private $categories;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->uploads = new ArrayCollection();
+    }
+
+    /**
+     * Get categories
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set categories
+     */
+    public function setCategories(array $categories)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
 
     /**
      * @return id 
@@ -128,43 +177,22 @@ class Artist extends BaseUser
     }
 
     /**
-     * Get Description
+     * Get Biography
      * @return string  
      */
-    public function getDescription(): ?string
+    public function getBiography(): ?string
     {
-        return $this->description;
+        return $this->biography;
     }
 
     /**
-     *  Set Description.
-     * @param string $description
+     *  Set Biography
+     * @param string $biography
      * @return self
      */
-    public function setDescription(string $description): self
+    public function setBiography(string $biography): self
     {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get Profil.
-     * @return UserProfil  
-     */
-    public function getProfil(): ?UserProfil
-    {
-        return $this->profil;
-    }
-
-    /**
-     * Set profil 
-     * @param UserProfil $profil
-     * @return self
-     */
-    public function setProfil(UserProfil $profil = null): self
-    {
-        $this->profil = $profil;
+        $this->biography = $biography;
 
         return $this;
     }
@@ -188,4 +216,94 @@ class Artist extends BaseUser
 
         return $this;
     }
+
+   /**
+     * Get Country.
+     * @return country 
+     */
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set Country.
+     * @param string $country
+     * @return country 
+     */
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get BirthdayDate.
+     * @return \DateTime 
+     */
+    public function getBirthdayDate(): ?\DateTime
+    {
+        return $this->birthdayDate;
+    }
+
+    /**
+     * Set BirthdayDate.
+     * 
+     * @param \DateTime $birthdayDate
+     * 
+     * @return Artist
+     */
+    public function setBirthdayDate(\DateTime $birthdayDate = null): self
+    {
+        $this->BirthdayDate = $birthdayDate;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     * @return city 
+     */
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set City.
+     * @param string $city
+     * @return city 
+     */
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function addUpload(Upload $upload): self
+    {
+        if (!$this->uploads->contains($upload)) {
+            $this->uploads[] = $upload;
+            $upload->setArtist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUpload(Upload $upload): self
+    {
+        if ($this->uploads->contains($upload)) {
+            $this->uploads->removeElement($upload);
+            // set the owning side to null (unless already changed)
+            if ($upload->getArtist() === $this) {
+                $upload->setArtist(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

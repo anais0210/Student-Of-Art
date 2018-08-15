@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Upload;
 use App\Form\UploadType;
+use Doctrine\Bundle\DoctrineBundle\Repository\getRepository;
 use FOS\UserBundle\Form\Factory\createForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller ;
 use Symfony\Component\Form\Extension\HttpFoundation\handleRequest;
@@ -50,5 +51,14 @@ class UploadController extends Controller
     private function generateUniqueFileName()
     {
         return md5(uniqid());
+    }
+
+    public function findByCategory()
+    {
+        $repository = $this
+        ->getDoctrine()->getManager()->getRepository(Upload:: class)
+        ;
+
+        $categories = $repository->FindAll();
     }
 }

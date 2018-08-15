@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %} 
+        <link href="{{asset('build/galerieCss')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+	<h1> {{categorie}} </h1>
+	{% include "oeuvre/core.html.twig" %}
+
+	<script src="{{asset('build/galerieJQuery.js')}}"></script>
+	<script src="{{asset('build/galerieJs.js')}}"></script>
+
+{% endblock %}

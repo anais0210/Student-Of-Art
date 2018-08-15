@@ -5,32 +5,31 @@
         <title>{% block title %}Student Of Art!{% endblock %}</title>
          {% block stylesheets %}{% endblock %}
 
-	  <link rel="stylesheet" type="text/css" href="{{asset('build/bootstrapCss.css')}}">
-    <!-- Custom Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{{asset('build/fontAwesomeCss.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('build/themeGeneralCss.css')}}">
-    <link rel="stylesheet" type="text/css"  href="{{asset('build/simpleLineIconsCss.css')}}">
-
+    	  <link rel="stylesheet" type="text/css" href="{{asset('build/bootstrapCss.css')}}">
+        <!-- Custom Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{{asset('build/fontAwesomeCss.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('build/themeGeneralCss.css')}}">
+        <link rel="stylesheet" type="text/css"  href="{{asset('build/simpleLineIconsCss.css')}}">
     </head>
     <body id="page-top">
       {% block navigation %}
         {% include 'core/nav_homepage.html.twig' %}
       {% endblock %}
-	    
+      
       {% block body %}{% endblock %}
-		  {% block javascripts %}{% endblock %}
+  	  {% block javascripts %}{% endblock %}
       <script src="{{asset('build/themeGeneralJs.js')}}"></script>
       <script src="{{asset('build/bootstrapBundle.js')}}"></script>
 
-	    <!-- Scroll to Top Button-->
-	    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
-	      <i class="fa fa-angle-up"></i>
-	    </a>
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+      </a>
       {% include 'core/footer.html.twig' %}
-	    <!-- Bootstrap core JavaScript -->
-	    <script src="{{asset('build/bootstrapJQuery.js')}}"></script>
-	    <script src="{{asset('build/bootstrapJQueryEasingCompatibilityJs.js')}}"></script>
-		 
-    </body>
+      <!-- Bootstrap core JavaScript -->
+      <script src="{{asset('build/bootstrapJQuery.js')}}"></script>
+      <script src="{{asset('build/bootstrapJQueryEasingCompatibilityJs.js')}}"></script>
+  	 
+    </body>s
 </html>

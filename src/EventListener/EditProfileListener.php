@@ -9,20 +9,23 @@ use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Zend\Code\Generator\setFilename;
 
 /**
  * class EditProfileListener 
  */
 class EditProfileListener implements EventSubscriberInterface
 {
+    /** @var EntityManagerInterfacec */
     private $entityManager;
+
     private $tokenStorage;
     private $imageUpload;
     private $logoDirectory;
 
     /**
-     * @param UrlGeneratorInterface  $router
      * @param EntityManagerInterface $entityManager
+     * @param TokenStorageInterface  $tokenStorage
      * @param ImageUpload            $imageUpload
      * @param string                 $logoDirectory
      */
@@ -53,7 +56,11 @@ class EditProfileListener implements EventSubscriberInterface
         $artist = $this->tokenStorage->getToken()->getUser();
 
         /** @var Upload $logo */
-        $logo = $form->get('logo');
-        $this->imageUpload->upload($logo->getImage(), $this->logoDirectory);
+        $logo = $form->get('logo')->getData();
+        if ($logo->getImage()) {
+            $this->entityManager->persist($logo);
+            $filename = $this->imageUpload->upload($logo->getImage(), $this->logoDirectory);
+            $logo->setFilename($filename);
+        }
     }
 }

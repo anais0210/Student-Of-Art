@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Student Of Art!{% endblock %}</title>
+        <title>{% block title %}Student Of Art Tableau de bord{% endblock %}</title>
          {% block stylesheets %}{% endblock %}
 
 	  <link rel="stylesheet" type="text/css" href="{{asset('build/bootstrapCss.css')}}">
@@ -15,7 +15,6 @@
 
     </head>
     <body>
-      <div class="wrapper">
         {% block body %}{% endblock %}
   		  {% block javascripts %}{% endblock %}
         <script src="{{asset('build/themeGeneralJs.js')}}"></script>
@@ -29,6 +28,5 @@
   	    <!-- Bootstrap core JavaScript -->
   	    <script src="{{asset('build/bootstrapJQuery.js')}}"></script>
   	    <script src="{{asset('build/bootstrapJQueryEasingCompatibilityJs.js')}}"></script>
-		  </div>
     </body>
 </html>

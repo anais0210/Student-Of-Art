@@ -1,0 +1,12 @@
+  {% extends 'base.html.twig' %}
+  {% block body %}
+
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{asset('build/galerieCss')}}" rel="stylesheet">
+  
+  {% include "artist/artist.html.twig" %}
+
+    <script src="{{asset('build/galerieJQuery.js')}}"></script>
+    <script src="{{asset('build/galerieJs.js')}}"></script>
+
+{% endblock %}

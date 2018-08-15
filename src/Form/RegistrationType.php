@@ -5,6 +5,8 @@ namespace App\Form;
 use FOS\UserBundle\Form\Type\getBlockPrefix;
 use FOS\UserBundle\Form\Type\getParent;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -22,15 +24,25 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'attr' => ['class' => 'form-control'], 
-                'label_attr' => ['class' => ''],
                 'label' => 'Nom',
+                'attr' => ['placeholder' => 'Nom']
             ])
-            ->add('LastName', null, [
-                'attr' => ['class' => 'form-control'], 
-                'label_attr' => ['class' => ''], 
-                'label' => 'Prenom',
+            ->add('lastName', null, [
+                'label' => 'Prénom',
+                'attr' => ['placeholder' => 'Prénom']
             ])
+            ->add('plainPassword', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'options' => array(
+                    'translation_domain' => 'FOSUserBundle',
+                    'attr' => array(
+                        'autocomplete' => 'new-password',
+                    ),
+                ),
+                'first_options' => array('label' => 'form.password'),
+                'second_options' => array('label' => 'confirmer '),
+                'invalid_message' => 'fos_user.password.mismatch',
+            ))
         ;
     }
 
