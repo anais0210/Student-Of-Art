@@ -42,16 +42,29 @@ class Participant
      */
     private $waiting;
 
+    /**
+     * Get id. 
+     * @return id
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Get Email.
+     * @return string  
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * Set Email.
+     * @param string $email 
+     * @return self
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -59,11 +72,20 @@ class Participant
         return $this;
     }
 
+    /**
+     * Get Password.
+     * @return string 
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    /**
+     * Set Password.
+     * @param string $password
+     * @return self 
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -71,11 +93,20 @@ class Participant
         return $this;
     }
 
+    /**
+     * Get privateSell
+     * @return privateSell 
+     */
     public function getPrivateSell(): ?PrivateSell
     {
         return $this->privateSell;
     }
 
+    /**
+     * Set privateSell
+     * @param ?privateSell $privateSell
+     * @return self 
+     */
     public function setPrivateSell(?PrivateSell $privateSell): self
     {
         $this->privateSell = $privateSell;
@@ -83,11 +114,20 @@ class Participant
         return $this;
     }
 
+     /**
+     * Get position
+     * @return position
+     */
     public function getPosition(): ?int
     {
         return $this->position;
     }
 
+     /**
+     * Set position
+     * @param integer $position
+     * @return self 
+     */
     public function setPosition(int $position): self
     {
         $this->position = $position;
@@ -95,11 +135,20 @@ class Participant
         return $this;
     }
 
+     /**
+     * Get Waiting
+     * @return bool
+     */
     public function getWaiting(): ?bool
     {
         return $this->waiting;
     }
 
+     /**
+     * Set Waiting
+     * @param bool $waiting
+     * @return self 
+     */
     public function setWaiting(bool $waiting): self
     {
         $this->waiting = $waiting;

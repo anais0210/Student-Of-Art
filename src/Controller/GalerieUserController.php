@@ -14,6 +14,7 @@ class GalerieUserController extends Controller
 {
     /**
      * @Route("/profile/galerie", name="galerie")
+     * @param EntityManagerInterface $em
      * @return render
      */
     public function index(EntityManagerInterface $em)
@@ -25,6 +26,7 @@ class GalerieUserController extends Controller
 
      /**
      * @Route("/profile/galerie/image", name="image")
+     * @param EntityManagerInterface $em
      * @return render
      */
     public function indexImage(EntityManagerInterface $em)

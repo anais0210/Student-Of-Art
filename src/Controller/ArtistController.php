@@ -17,12 +17,16 @@ class ArtistController extends Controller
      */
     public function index()
     {
-    	$repo = $this->getDoctrine()->getRepository(Artist:: class);
-    	$artistes = $repo->findAll();
-        
-        return $this->render('artist/index.html.twig',[ 
-        	'artistes'=>$artistes
-        ])
+        $repo = $this->getDoctrine()
+        ->getRepository(
+        Artist::class);
+        $artistes = $repo->findAll();
+
+            return $this->render('artist/index.html.twig', [
+                'artistes'
+                =>$artistes
+                ]
+            )
         ;
     }
 }

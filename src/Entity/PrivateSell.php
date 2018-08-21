@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * class PrivateSell
  * @ORM\Entity()
  */
 class PrivateSell
@@ -65,6 +66,11 @@ class PrivateSell
      */
     private $participants;
 
+    /**
+     * @return ArrayCollection
+     * @return ArrayCollection
+     * @return DateTime 
+     */
     public function __construct()
     {
         $this->oeuvres = new ArrayCollection();
@@ -72,16 +78,29 @@ class PrivateSell
         $this->date = new \Datetime();
     }
 
+    /**
+     * Get id. 
+     * @return id
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Get Artist.
+     * @return string 
+     */
     public function getArtist(): ?string
     {
         return $this->artist;
     }
 
+    /**
+     * Set Artist.
+     * @param Artist $artist
+     * @return self 
+     */
     public function setArtist(Artist $artist): self
     {
         $this->artist = $artist;
@@ -89,11 +108,20 @@ class PrivateSell
         return $this;
     }
 
+    /**
+     * Get NumberPlaces.
+     * @return integer 
+     */
     public function getNumberPlaces(): ?int
     {
         return $this->numberPlaces;
     }
 
+    /**
+     * Set NumberPlaces.
+     * @param int $numberPlaces
+     * @return self 
+     */
     public function setNumberPlaces(int $numberPlaces): self
     {
         $this->numberPlaces = $numberPlaces;
@@ -101,11 +129,20 @@ class PrivateSell
         return $this;
     }
 
+    /**
+     * Get Oeuvres.
+     * @return Traversable oeuvres 
+     */
     public function getOeuvres(): \Traversable
     {
         return $this->oeuvres;
     }
 
+    /**
+     * add Oeuvre.
+     * @param Upload $oeuvre
+     * @return self 
+     */
     public function addOeuvre(Upload $oeuvre): self
     {
         if (!$this->oeuvres->contains($oeuvre)) {
@@ -116,6 +153,11 @@ class PrivateSell
         return $this;
     }
 
+    /**
+     * remove Oeuvre.
+     * @param Upload $oeuvre
+     * @return self  
+     */
     public function removeOeuvre(Upload $oeuvre): self
     {
         if ($this->oeuvres->contains($oeuvre)) {
@@ -126,6 +168,11 @@ class PrivateSell
         return $this;
     }
 
+    /**
+     * Set Oeuvres.
+     * @param array $oeuvres 
+     * @return self
+     */
     public function setOeuvres(array $oeuvres): self
     {
         $this->oeuvres = $oeuvres;
@@ -133,11 +180,20 @@ class PrivateSell
         return $this;
     }
 
+    /**
+     * Get Date.
+     * @return DateTimeInterface 
+     */
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
+    /**
+     * Set Date.
+     * @param \DateTimeInterface $date
+     * @return date 
+     */
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
@@ -145,11 +201,20 @@ class PrivateSell
         return $this;
     }
 
+    /**
+     * Get nameEvent.
+     * @return string  
+     */
     public function getNameEvent(): ?string
     {
         return $this->nameEvent;
     }
 
+    /**
+     * Set nameEvent.
+     * @param string $nameEvent
+     * @return self 
+     */
     public function setNameEvent(string $nameEvent): self
     {
         $this->nameEvent = $nameEvent;
@@ -157,11 +222,20 @@ class PrivateSell
         return $this;
     }
 
-     public function getAddress(): ?string
+    /**
+     * Get Address.
+     * @return string 
+     */
+    public function getAddress(): ?string
     {
         return $this->address;
     }
 
+    /**
+     * Set Address.
+     * @param string $address 
+     * @return self
+     */
     public function setAddress(string $address): self
     {
         $this->address = $address;
@@ -177,6 +251,11 @@ class PrivateSell
         return $this->participants;
     }
 
+    /**
+     * add Participant
+     * @param Participant $participant
+     * @return self 
+     */
     public function addParticipant(Participant $participant): self
     {
         if (!$this->participants->contains($participant)) {
@@ -187,6 +266,11 @@ class PrivateSell
         return $this;
     }
 
+    /**
+     * remove Participant
+     * @param Participant $participant
+     * @return self
+     */
     public function removeParticipant(Participant $participant): self
     {
         if ($this->participants->contains($participant)) {
@@ -198,7 +282,10 @@ class PrivateSell
 
         return $this;
     }
-
+    /**
+     * isPast 
+     * @return DateTime 
+     */
     public function isPast(): bool
     {
         return new \DateTime() > $this->date;

@@ -7,7 +7,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\getEntityManager;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-
+/**
+ * class Artist 
+ */
 class ArtistRepository extends ServiceEntityRepository
 {
     /**

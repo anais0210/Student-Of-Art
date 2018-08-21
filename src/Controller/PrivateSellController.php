@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\HttpFoundation\handleRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * class PrivateSell 
+ */
 class PrivateSellController extends Controller
 {
     /**
@@ -23,23 +26,27 @@ class PrivateSellController extends Controller
     public function new(Request $request)
     {
         $privateSell = new privateSell();
-		$form = $this->createForm(PrivateSellType::class, $privateSell, ['artist' => $this->getUser()]);
-		$form->handleRequest($request);
+        $form = $this->createForm(PrivateSellType::class, $privateSell,
+        ['artist' => $this->getUser()]);
+        $form->handleRequest($request);
 
-		if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             dump($form->get('oeuvres')->getData());
             $privateSell->setArtist($this->getUser());
-	        $em = $this->getDoctrine()->getManager();
-	        $em->persist($privateSell);
-	        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($privateSell);
+            $em->flush();
             $request->request->replace();
 
              return $this->redirect($this->generateUrl('private_sell'));
-    	}	
+        }
 
         return $this->render('private_sell/index.html.twig', ['form' => $form->createView()]);
     }
 
+    /**
+     * @return render 
+     */
     public function list()
     {
         $privateSells = $this->getDoctrine()
@@ -47,7 +54,7 @@ class PrivateSellController extends Controller
             ->findByArtist($this->getUser());
 
         return $this->render(
-            'private_sell/list.html.twig', 
+            'private_sell/list.html.twig',
             ['privateSells' => $privateSells]
         );
     }

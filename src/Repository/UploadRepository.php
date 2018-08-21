@@ -9,34 +9,42 @@ use Doctrine\ORM\createQueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Upload|null find($id, $lockMode = null, $lockVersion = null)
- * @method Upload|null findOneBy(array $criteria, array $orderBy = null)
- * @method Upload[]    findAll()
- * @method Upload[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * class Upload
+ * @method Upload[]    findBy
  */
 class UploadRepository extends ServiceEntityRepository
 {
     /**
      * @param  RegistryInterface $registry
+     * @method Upload[]    findBy
+     * @return result
      */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Upload::class);
     }
 
+    /**
+     * @param string $category
+     * @return Result
+     */
     public function findByCategory(string $category)
     {
 
-	    $queryBuilder = $this->createQueryBuilder('u');
-	    
-	    $queryBuilder
-	    	->where('u.category = :category')
-	    	->setParameter('categorie', $category)
-	    ;
+        $queryBuilder = $this->createQueryBuilder('u');
+        $queryBuilder
+        ->where('u.category = :category')
+        ->setParameter('categorie', $category)
+        ;
 
-	    return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder->getQuery()->getResult();
     }
 
+    /** 
+     * @param Artist $artist
+     * @method Upload[]    findBy
+     * @return result
+     */
     public function findByArtist(Artist $artist)
     {
         $queryBuilder = $this->createQueryBuilder('u');
@@ -47,7 +55,6 @@ class UploadRepository extends ServiceEntityRepository
         ;
 
         return $queryBuilder->getQuery()->getResult();
-        
     }
 
 }

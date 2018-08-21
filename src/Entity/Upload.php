@@ -157,8 +157,7 @@ class Upload
     }
     /**
      * Set image
-     * @param Upload $upload
-     * 
+     * @param UploadFile $image
      * @return self 
      */
     public function setImage(UploadedFile $image): self
@@ -195,9 +194,10 @@ class Upload
     {
         return $this->fileName;
     }
+
     /**
-     * Set fileName
-     * @param string $FileName
+     * Set FileName.
+     * @param string $fileName
      * @return self 
      */
     public function setFileName($fileName): self
@@ -209,6 +209,7 @@ class Upload
 
     /**
      * Get category
+     * @return string
      */
     public function getCategory(): ?string
     {
@@ -217,6 +218,8 @@ class Upload
 
     /**
      * Set category
+     * @param string $category
+     * @return string
      */
     public function setCategory(string $category)
     {
@@ -225,11 +228,20 @@ class Upload
         return $this;
     }
 
+    /**
+     * Get Artist.
+     * @return artist 
+     */
     public function getArtist(): ?Artist
     {
         return $this->artist;
     }
 
+    /**
+     * Set Artist
+     * @param ?Artist $artist
+     * @return self 
+     */
     public function setArtist(?Artist $artist): self
     {
         $this->artist = $artist;
@@ -237,11 +249,20 @@ class Upload
         return $this;
     }
 
+    /**
+     * Get PrivateSell
+     * @return privateSell 
+     */
     public function getPrivateSell(): ?PrivateSell
     {
         return $this->privateSell;
     }
 
+    /**
+     * Set PrivateSell
+     * @param privateSell $privateSell
+     * @return self 
+     */
     public function setPrivateSell(PrivateSell $privateSell = null): self
     {
         $this->privateSell = $privateSell;

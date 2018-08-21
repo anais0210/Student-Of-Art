@@ -34,7 +34,7 @@ class UploadController extends Controller
             $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
             $file->move(
                 $this->getParameter('gallery_directory'),
-                $fileName);
+            $fileName);
             $upload->setArtist($this->getUser());
             $upload->setFileName($fileName);
 
@@ -57,11 +57,15 @@ class UploadController extends Controller
         return md5(uniqid());
     }
 
+    /**
+     * getRepository 
+     */
     public function findByCategory()
     {
-        $repository = $this
-        ->getDoctrine()->getManager()->getRepository(Upload:: class)
-        ;
+        $repository = $this->getDoctrine()
+        ->getManager()
+        ->getRepository(
+        Upload::class);
 
         $categories = $repository->FindAll();
     }

@@ -10,19 +10,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\getDoctrine;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * class OeuvreController
+ * class Oeuvre
  */
 class OeuvreController extends Controller
 {
     /**
      * @Route("/oeuvre/{categorie}", name="oeuvre")
+     * @param  categorie $categorie
      * @return render
      */
     public function index($categorie)
     {
-    	$repo = $this->getDoctrine()->getRepository(Upload:: class);
-    	$results = $repo->findAll();
+        $repo = $this->getDoctrine()
+        ->getRepository(
+        Upload::class);
+        $results = $repo->findAll();
 
         return $this->render('oeuvre/index.html.twig', ['categorie' => $categorie, 'oeuvres' => $results]);
     }
 }
+ 

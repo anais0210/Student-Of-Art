@@ -16,28 +16,34 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PrivateSellType extends AbstractType
 {
-	public function buildForm(FormBuilderInterface $builder, array $options)
-	{
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     * @return form
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         $artist = $options['artist'];
 
-		$builder
+        $builder
             ->add('nameEvent', null, [
                 'attr' => [
-            		'placeholder' => 'Nom de la vente',
-            		'class' => 'form-control',
-            	],
+                'placeholder' =>
+                'Nom de la vente',
+                'class' => 'form-control',
+                ],
                 'label' =>'Nom de la vente*',
             ])
             ->add('date', DateTimeType::class, [
                 'label' => 'Date de votre vente*',
-            ]) 			
+            ])
             ->add('oeuvres', EntityType::class, array(
-    			'class' => Upload::class,
-    			'choice_label' => 'title',
+                'class' => Upload::class,
+                'choice_label' => 'title',
                 'by_reference' => false,
-    			'multiple' => true,
-    			'label' => 'Sélèctionner vos oeuvres',
-    			'attr' => ['class' => 'form-control select2'],
+                'multiple' => true,
+                'label' => 'Sélèctionner vos oeuvres',
+                'attr' => ['class' => 'form-control select2'],
                 'query_builder' => function (EntityRepository $er) use ($artist) {
                     return $er->createQueryBuilder('u')
                         ->Where('u.artist = :artist')
@@ -45,11 +51,11 @@ class PrivateSellType extends AbstractType
                         ->andWhere('u.privateSell IS NULL')
                         ->setParameter('artist', $artist);
                 }
-			))
+            ))
             ->add('numberPlaces', null, [
                 'attr' => [
-                	'placeholder' => 'nombre de participants',
-                	'class' => 'form-control',
+                    'placeholder' => 'nombre de participants',
+                    'class' => 'form-control',
                 ],
                 'label' => 'Nombres de places* (de 1 à 15)',
             ])

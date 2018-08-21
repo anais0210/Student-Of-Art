@@ -16,7 +16,7 @@ class RegistrationListener implements EventSubscriberInterface
 {
     private $router;
     /**
-     * @param UrlGeneratorInterface  $router
+     * @param UrlGeneratorInterface $router
      */
     public function __construct(UrlGeneratorInterface $router)
     {

@@ -88,6 +88,9 @@ class Artist extends BaseUser
      */
     private $privateSells;
 
+    /**
+     * @return ArrayCollection 
+     */
     public function __construct()
     {
         parent::__construct();
@@ -96,6 +99,7 @@ class Artist extends BaseUser
 
     /**
      * Get categories
+     * @return categories
      */
     public function getCategories()
     {
@@ -104,6 +108,8 @@ class Artist extends BaseUser
 
     /**
      * Set categories
+     * @param array $categories
+     * @return array
      */
     public function setCategories(array $categories)
     {
@@ -113,7 +119,8 @@ class Artist extends BaseUser
     }
 
     /**
-     * @return id 
+     * Get id
+     * @return id
      */
     public function getId()
     {
@@ -131,8 +138,8 @@ class Artist extends BaseUser
 
     /**
      * Set Name.
-     * @return $self
      * @param string $name
+     * @return self
      */
     public function setName(string $name): self
     {
@@ -205,6 +212,7 @@ class Artist extends BaseUser
     }
 
     /**
+     * Get Logo
      * @return Upload
      */
     public function getLogo()
@@ -213,8 +221,8 @@ class Artist extends BaseUser
     }
 
     /**
+     * Set logo
      * @param Upload $logo
-     * 
      * @return Artist
      */
     public function setLogo(Upload $logo = null)
@@ -224,7 +232,7 @@ class Artist extends BaseUser
         return $this;
     }
 
-   /**
+    /**
      * Get Country.
      * @return country 
      */
@@ -289,6 +297,11 @@ class Artist extends BaseUser
         return $this;
     }
 
+    /**
+     * add Upload 
+     * @param Upload $upload
+     * @return Artist
+     */
     public function addUpload(Upload $upload): self
     {
         if (!$this->uploads->contains($upload)) {
@@ -298,7 +311,11 @@ class Artist extends BaseUser
 
         return $this;
     }
-
+    /**
+     * remove Upload
+     * @param Upload $upload
+     * @return Artist 
+     */
     public function removeUpload(Upload $upload): self
     {
         if ($this->uploads->contains($upload)) {
