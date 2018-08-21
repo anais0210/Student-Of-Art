@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Upload;
 use App\Form\UploadType;
 use Doctrine\Bundle\DoctrineBundle\Repository\getRepository;
+use Doctrine\ORM\persist;
 use FOS\UserBundle\Form\Factory\createForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller ;
 use Symfony\Component\Form\Extension\HttpFoundation\handleRequest;
@@ -25,24 +26,27 @@ class UploadController extends Controller
     public function new(Request $request)
     {
         $upload = new Upload();
-        $form = $this->createForm(UploadType::class, $upload);
+        $form = $this->createForm(UploadType::class, $upload, ['need_category' => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form -> isValid()) {
-            $file = $upload->getUpload();
-            $fileName = $this->generateUniqueFileName() . '.' . $file -> guessExtension();
+            $file = $upload->getImage();
+            $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
             $file->move(
-                $this -> getParameter('upload_directory'),
-                $fileName
-            );
-            $image -> setImage($fileName);
+                $this->getParameter('gallery_directory'),
+                $fileName);
+            $upload->setArtist($this->getUser());
+            $upload->setFileName($fileName);
 
-            return $this -> redirect($this -> generateUrl('app_upload_list'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($upload);
+            $em->flush();
+            $request->request->replace();
+
+            return $this->redirect($this->generateUrl('new_upload'));
         }
 
-        return $this -> render('upload/upload.html.twig', array(
-            'form' => $form -> createView(),
-        ));
+        return $this->render('upload/upload.html.twig', ['form' => $form->createView()]);
     }
 
     /**

@@ -29,6 +29,7 @@ Encore
     .addEntry('profilChar','./assets/profil/js/plugins/chartist.min.js')
     .addEntry('profilNoui','./assets/profil/js/plugins/nouislider.min.js')
     .addEntry('profilDemo','./assets/profil/js/demo.js')
+    .addEntry('app', './assets/js/app.js')
 
     .addStyleEntry('themeGeneralCss', './assets/themeGeneral/css/stylish-portfolio.css')
     .addEntry('bootstrapCss', './assets/bootstrap/css/bootstrap.css')

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -23,49 +25,56 @@ class Upload
 
     /**
      * @var text
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotNull(message="Ce champ est obligatoire")
      */
     private $title;
 
     /**
      * @var string
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
      * @ORM\ManyToOne(targetEntity="Artist", inversedBy="uploads")
-     * @ORM\JoinColumn(nullable=true)
      */
     private $artist;
 
     /**
      * @var string
      * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\NotNull(message="Ce champ est obligatoire")
      */
     private $image;
 
     /**
      * @var datetime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date;
 
     /**
      * @var string
-     * @ORM\Column(type="text") 
+     * @ORM\Column(type="text", nullable=true)
      */
     private $fileName;
 
      /**
      * @var $category
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotNull(message="Ce champ est obligatoire")
      */
     private $category;
 
     /**
-     * @return Datetime 
+     * @ORM\ManyToOne(targetEntity="PrivateSell", inversedBy="oeuvres")
+     */
+    private $privateSell;
+
+    /**
+     * @return Datetime
      */
     public function __construct()
     {
@@ -201,9 +210,9 @@ class Upload
     /**
      * Get category
      */
-    public function getCategory()
+    public function getCategory(): ?string
     {
-        return $this->categories;
+        return $this->category;
     }
 
     /**
@@ -211,7 +220,7 @@ class Upload
      */
     public function setCategory(string $category)
     {
-        $this->category = $categories;
+        $this->category = $category;
 
         return $this;
     }
@@ -228,4 +237,15 @@ class Upload
         return $this;
     }
 
+    public function getPrivateSell(): ?PrivateSell
+    {
+        return $this->privateSell;
+    }
+
+    public function setPrivateSell(PrivateSell $privateSell = null): self
+    {
+        $this->privateSell = $privateSell;
+
+        return $this;
+    }
 }

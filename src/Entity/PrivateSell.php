@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -19,29 +20,45 @@ class PrivateSell
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="name")
+     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="privateSells")
      */
     private $artist;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *  min = 1,
+     *  max = 15,
+     *     minMessage = "Minimum {{ limit }} participant",
+     *     maxMessage = "Maximun {{ limit }} participants"
+     * )
+     * @Assert\NotNull(message="Ce champ est obligatoire")
+     *
      */
-    private $numberPlaces;
+    protected $numberPlaces;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Upload", inversedBy="image")
+     * @ORM\OneToMany(targetEntity="Upload", mappedBy="privateSell")
      */
     private $oeuvres;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=false)
+     * @Assert\NotNull(message="Ce champ est obligatoire")
      */
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotNull(message="Ce champ est obligatoire")
      */
     private $nameEvent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotNull(message="Ce champ est obligatoire")
+     */
+    private $address;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="privateSell", orphanRemoval=true)
@@ -50,8 +67,9 @@ class PrivateSell
 
     public function __construct()
     {
-        $this->oeuvres = new ArrayColletion();
+        $this->oeuvres = new ArrayCollection();
         $this->participants = new ArrayCollection();
+        $this->date = new \Datetime();
     }
 
     public function getId()
@@ -64,7 +82,7 @@ class PrivateSell
         return $this->artist;
     }
 
-    public function setArtist(string $artist): self
+    public function setArtist(Artist $artist): self
     {
         $this->artist = $artist;
 
@@ -83,7 +101,7 @@ class PrivateSell
         return $this;
     }
 
-    public function getOeuvres(): ?ArrayCollection
+    public function getOeuvres(): \Traversable
     {
         return $this->oeuvres;
     }
@@ -91,7 +109,7 @@ class PrivateSell
     public function addOeuvre(Upload $oeuvre): self
     {
         if (!$this->oeuvres->contains($oeuvre)) {
-            $this->oeuvres->addElement($oeuvre);
+            $this->oeuvres->add($oeuvre);
             $oeuvre->setPrivateSell($this);
         }
 
@@ -108,7 +126,7 @@ class PrivateSell
         return $this;
     }
 
-    public function setOeuvres(array $oeuvre): self
+    public function setOeuvres(array $oeuvres): self
     {
         $this->oeuvres = $oeuvres;
 
@@ -139,10 +157,22 @@ class PrivateSell
         return $this;
     }
 
+     public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Participant[]
      */
-    public function getParticipants(): Collection
+    public function getParticipants(): array
     {
         return $this->participants;
     }

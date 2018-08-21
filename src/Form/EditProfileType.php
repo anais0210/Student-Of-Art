@@ -53,8 +53,7 @@ class EditProfileType extends AbstractType
             ->add('biography', null, [
                 'attr' => ['class' => 'form-control'],
             'label' => 'Biographie'])
-            ->add('BirthdayDate', BirthdayType::class, [
-                'attr' => ['class' => 'form-control'],
+            ->add('birthdayDate', BirthdayType::class, [
                 'label' => 'age',
                 'required' => false
             ])

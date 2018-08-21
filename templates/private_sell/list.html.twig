@@ -1,0 +1,20 @@
+<div class="container">
+      <!-- Page Heading -->
+      <h1 class="my-4">
+        <small>Mes Ventes privées</small>
+      </h1>
+      <div class="row">
+        {% for privateSell in privateSells %}
+          <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{{ asset('/img/private.jpg') }}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">{{ privateSell.nameEvent }}</a>
+                </h4>
+                <p class="card-text">{{ privateSell.date|date('Y-m-d H:i:s') }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>

@@ -30,12 +30,14 @@ class Artist extends BaseUser
     /**
      * @var name
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="Ce champ est obligatoire")
      */
     private $name;
 
     /**
      * @var lastName
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="Ce champ est obligatoire")
      */
     private $lastName;
 
@@ -80,6 +82,11 @@ class Artist extends BaseUser
      * @ORM\Column(type="array")
      */
     private $categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PrivateSell", mappedBy="artist")
+     */
+    private $privateSells;
 
     public function __construct()
     {
@@ -239,24 +246,24 @@ class Artist extends BaseUser
     }
 
     /**
-     * Get BirthdayDate.
+     * Get birthdayDate.
      * @return \DateTime 
      */
-    public function getBirthdayDate(): ?\DateTime
+    public function getBirthdayDate(): ?\DateTimeInterface
     {
         return $this->birthdayDate;
     }
 
     /**
-     * Set BirthdayDate.
+     * Set birthdayDate.
      * 
      * @param \DateTime $birthdayDate
      * 
      * @return Artist
      */
-    public function setBirthdayDate(\DateTime $birthdayDate = null): self
+    public function setBirthdayDate(\DateTimeInterface $birthdayDate = null): self
     {
-        $this->BirthdayDate = $birthdayDate;
+        $this->birthdayDate = $birthdayDate;
 
         return $this;
     }

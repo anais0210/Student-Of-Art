@@ -1,12 +1,45 @@
-{% extends "base.html.twig" %}
-
-{% block title %}
-{{parent()}}
-{% endblock %}
+{% extends 'dashboard/index_dashboard.html.twig' %}
 
 
-{% block body %}
-	{{ form_start(form) }}
-		{{ form_row(form.image) }}
+{% block title %}Upload Gallerie{% endblock %}
+{% block content %}
+	{{form_start(form)}}
+		<div class="row">
+            <div class="col-md-5 pl-3">
+                <div class="form-group">
+                    <label>{{form_label(form.title)}}</label>
+                    {{form_widget(form.title)}}
+                </div>
+            </div>
+            <div class="col-md-5 pl-3">
+                <div class="form-group">
+                    <label>{{form_label(form.description)}}</label>
+                    {{form_widget(form.description)}}
+                </div>
+            </div>
+            <div class="clo-md-5 pl-3">
+                <div class="form-group">
+                    <label>{{form_label(form.category)}}</label>
+                    {{form_widget(form.category)}}
+                </div>
+            </div>
+            <div class="clo-md-5 pl-3">
+                <div class="form-group">
+                    <label>{{form_label(form.image)}}</label>
+                    {{form_widget(form.image)}}
+                </div>
+            </div>
+        </div>
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id == form.vars.value.id %}
+        {% endif %}
+
+        <div class="col-md-5 pl-3">
+                <div class="form-group">
+    				<button type="submit" class="btn btn-info btn-fill pull-right">Enregistrer</button>
+        				<div class="clearfix"></div>
+        			</div>
+            </div>
+
 	{{ form_end(form) }}
 {% endblock %}

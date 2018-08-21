@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Artist;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -10,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class PaintType
+ * Class UploadType
  */
 class UploadType extends AbstractType
 {
@@ -23,18 +25,37 @@ class UploadType extends AbstractType
     {
         $builder
             ->add('title', null, [
-                'attr' => ['class' => 'form-control',
-                'placeholder' => 'Titre'],
-                'label_attr' => ['class' => ''],
+                'attr' => [
+                    'label' => 'Titre',
+                    'class' => 'form-control',
+                    'placeholder' => 'Titre',
+                ],
             ])
             ->add('description', TextareaType::class, [
-                'attr' => ['class' => 'form-control',
-                'placeholder' => 'Description'],
-                'label_attr' => ['class' => ''],
+                'label' => 'Description',
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Description'
+                ],
             ])
             ->add('image', FileType::class,
-            ['label' => 'Image(jpg)'])
+                ['label' => 'Image(jpg)']
+            )
+        ;
+
+        if ($options['need_category']) {
+            $builder
+                ->add('category', ChoiceType::class, [
+                    'label' => 'Categorie',
+                    'choices' => [
+                        Artist::CATEGORY_DRAWING => Artist::CATEGORY_DRAWING,
+                        Artist::CATEGORY_PAINT => Artist::CATEGORY_PAINT,
+                        Artist::CATEGORY_SCULPTOR => Artist::CATEGORY_SCULPTOR,
+                        Artist::CATEGORY_GRAPHICS => Artist::CATEGORY_GRAPHICS,
+                    ]
+                ])
             ;
+        }
     }
 
     /**
@@ -45,6 +66,7 @@ class UploadType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'App\Entity\Upload',
             'attr' => ['novalidate' => true],
+            'need_category' => false,
         ));
     }
 }

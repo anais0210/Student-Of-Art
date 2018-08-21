@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Artist;
 use App\Entity\Upload;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\createQueryBuilder;
@@ -35,4 +36,18 @@ class UploadRepository extends ServiceEntityRepository
 
 	    return $queryBuilder->getQuery()->getResult();
     }
+
+    public function findByArtist(Artist $artist)
+    {
+        $queryBuilder = $this->createQueryBuilder('u');
+
+        $queryBuilder
+            ->where('u.artist = :artist')
+            ->setParameter('artist', $artist)
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
+        
+    }
+
 }
