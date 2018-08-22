@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Upload;
 use App\Form\UploadType;
+use App\Services\ImageUpload;
 use Doctrine\Bundle\DoctrineBundle\Repository\getRepository;
 use Doctrine\ORM\persist;
 use FOS\UserBundle\Form\Factory\createForm;
@@ -20,10 +21,12 @@ class UploadController extends Controller
 {
     /**
      * @Route("/profile/upload", name="new_upload")
-     * @param Request $request
+     * 
+     * @param Request     $request
+     * @param ImageUpload $imageUpload
      * @return render
      */
-    public function new(Request $request)
+    public function new(Request $request, ImageUpload $imageUpload)
     {
         $upload = new Upload();
         $form = $this->createForm(UploadType::class, $upload, ['need_category' => true]);
@@ -31,10 +34,8 @@ class UploadController extends Controller
 
         if ($form->isSubmitted() && $form -> isValid()) {
             $file = $upload->getImage();
-            $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-            $file->move(
-                $this->getParameter('gallery_directory'),
-            $fileName);
+            $fileName = $imageUpload->upload($file);
+
             $upload->setArtist($this->getUser());
             $upload->setFileName($fileName);
 
@@ -47,26 +48,4 @@ class UploadController extends Controller
 
         return $this->render('upload/upload.html.twig', ['form' => $form->createView()]);
     }
-
-    /**
-     * @return string
-     */
-    private function generateUniqueFileName()
-    {
-        return md5(uniqid());
-    }
-
-    /**
-     * getRepository 
-     */
-    public function findByCategory()
-    {
-        $repository = $this->getDoctrine()
-        ->getManager()
-        ->getRepository(
-        Upload::class);
-
-        $categories = $repository->FindAll();
-    }
 }
-// TODO: use service ImageUpload.php

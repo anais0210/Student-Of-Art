@@ -28,9 +28,8 @@ class PrivateSellType extends AbstractType
         $builder
             ->add('nameEvent', null, [
                 'attr' => [
-                'placeholder' =>
-                'Nom de la vente',
-                'class' => 'form-control',
+                    'placeholder' => 'Nom de la vente',
+                    'class' => 'form-control',
                 ],
                 'label' =>'Nom de la vente*',
             ])

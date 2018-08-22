@@ -26,16 +26,13 @@ class EditProfileType extends AbstractType
         $builder
             ->add('name', null, [
                 'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => ''],
                 'label' => 'Nom',
             ])
             ->add('lastName', null, [
                 'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => ''],
                 'label' => 'Prénom',
             ])
             ->add('logo', UploadType::class, [
-                'attr' => ['class' => ''],
                 'label' => 'photo de profil',
                 'required' => false
             ])

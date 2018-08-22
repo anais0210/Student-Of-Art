@@ -22,8 +22,7 @@ class OeuvreController extends Controller
     public function index($categorie)
     {
         $repo = $this->getDoctrine()
-        ->getRepository(
-        Upload::class);
+        ->getRepository(Upload::class);
         $results = $repo->findAll();
 
         return $this->render('oeuvre/index.html.twig', ['categorie' => $categorie, 'oeuvres' => $results]);
