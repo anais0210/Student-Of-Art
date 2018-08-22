@@ -6,7 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * class Accueil 
+ * class AccueilController
  */
 class AccueilController extends Controller
 {

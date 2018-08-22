@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\Request ;
 use Symfony\Component\Routing\Annotation\Route ;
 
 /**
- * class Upload 
+ * class UploadController
  */
 class UploadController extends Controller
 {
     /**
-     * @Route("/upload", name="new_upload")
+     * @Route("/profile/upload", name="new_upload")
      * @param Request $request
      * @return render
      */
@@ -41,7 +41,6 @@ class UploadController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($upload);
             $em->flush();
-            $request->request->replace();
 
             return $this->redirect($this->generateUrl('new_upload'));
         }
@@ -70,3 +69,4 @@ class UploadController extends Controller
         $categories = $repository->FindAll();
     }
 }
+// TODO: use service ImageUpload.php

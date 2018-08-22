@@ -13,12 +13,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * class PrivateSell 
+ * class PrivateSellController
  */
 class PrivateSellController extends Controller
 {
     /**
-     * @Route("/private/sell", name="private_sell")
+     * @Route("/profile/private/sell", name="private_sell")
      * 
      * @param Request $request
      * @return render

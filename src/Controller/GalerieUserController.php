@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * class GalerieUser
+ * class GalerieUserController
  */
 class GalerieUserController extends Controller
 {

@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\getDoctrine;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * class Oeuvre
+ * class OeuvreController
  */
 class OeuvreController extends Controller
 {
